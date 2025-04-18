@@ -117,7 +117,7 @@
                 name="redes[youtube]"
                 placeholder="Youtube"
                 value="<?php echo $ponente->youtube ?? ''; ?>">   
-                >
+                
         </div>  
     </div>
 
@@ -132,7 +132,7 @@
                 name="redes[instagram]"
                 placeholder="Instagram"
                 value="<?php echo $ponente->instagram ?? ''; ?>">   
-                >
+                
         </div>  
     </div>
 
@@ -147,7 +147,7 @@
                 name="redes[tiktok]"
                 placeholder="Tiktok"
                 value="<?php echo $ponente->tiktok ?? ''; ?>">   
-                >
+                
         </div>  
     </div>
 
@@ -162,7 +162,7 @@
                 name="redes[github]"
                 placeholder="Github"
                 value="<?php echo $ponente->github ?? ''; ?>">   
-                >
+                
         </div>  
     </div>
 
