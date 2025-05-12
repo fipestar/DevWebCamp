@@ -9,6 +9,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class PonentesController {
     public static function index(Router $router) {
+        if(!is_admin()) {
+            header('Location: /login');
+        }
         
         $pagina_actual = $_GET['page'] ?? 1;
         $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
@@ -117,6 +120,9 @@ class PonentesController {
         $ponente->imagen_actual = $ponente->imagen;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!is_admin()) {
+            header('Location: /login');
+        }
             if(!empty($_FILES['imagen']['tmp_name'])){
                 $carpeta_imagenes = '../public/img/speakers';
                 //Crear la carpeta si no existe
@@ -162,6 +168,9 @@ class PonentesController {
 
     public static function eliminar() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(!is_admin()) {
+            header('Location: /login');
+        }
             $id = $_POST['id'];
             $ponente = Ponente::find($id);
 
