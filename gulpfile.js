@@ -19,6 +19,9 @@ const terser = require('gulp-terser-js');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename')
 
+//WebPack
+const webpack = require('webpack-stream');
+
 
 const paths = {
     scss: 'src/scss/**/*.scss',
@@ -34,14 +37,28 @@ function css() {
         .pipe(  dest('public/build/css') );
 }
 function javascript() {
-    return src(paths.js)
-      .pipe(sourcemaps.init())
-      .pipe(concat('bundle.js')) 
-      .pipe(terser())
-      .pipe(sourcemaps.write('.'))
-      .pipe(rename({ suffix: '.min' }))
-      .pipe(dest('./public/build/js'))
+  return src(paths.js)              // 1. Toma los archivos JS definidos en tu objeto paths.
+    .pipe(webpack({                 // 2. Pasa esos archivos por Webpack.
+      module: {
+        rules: [
+          {
+            test: /\.css$/,         // 3. Para los archivos .css
+            use: ['style-loader', 'css-loader'] // usa estos loaders.
+          }
+        ]
+      },
+      mode: 'production',          // 4. Compila en modo producción.
+      watch: true,                 // 5. Webpack se queda observando cambios (si Gulp también está en watch).
+      entry: './src/js/app.js',    // 6. Punto de entrada principal.
+    }))
+    .pipe(sourcemaps.init())       // 7. Inicia sourcemaps para debugging.
+    // .pipe(concat('bundle.js')) // (Comentado, pero sirve si algún día querés concatenar varios JS).
+    .pipe(terser())                // 8. Minifica el JS.
+    .pipe(sourcemaps.write('.'))   // 9. Escribe los sourcemaps.
+    .pipe(rename({ suffix: '.min' })) // 10. Renombra el archivo con `.min.js`.
+    .pipe(dest('./public/build/js')) // 11. Lo guarda en la carpeta destino.
 }
+
 
 function imagenes() {
     return src(paths.imagenes)
