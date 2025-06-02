@@ -73,7 +73,6 @@ class PaginasController {
         $eventos = Evento::ordenar('hora_id', 'ASC');
         
         $eventos_formateados = [];
-
         foreach($eventos as $evento){
             $evento->categoria = Categoria::find($evento->categoria_id);
             $evento->dia = Dia::find($evento->dia_id);
