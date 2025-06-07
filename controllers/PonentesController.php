@@ -28,9 +28,6 @@ class PonentesController {
         }
         
         $ponente = Ponente::paginar($registros_por_pagina, $paginacion->offset() );
-        if(!is_admin()) {
-            header('Location: /login');
-        }
         
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes /  Conferencistas',
