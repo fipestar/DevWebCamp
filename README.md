@@ -78,9 +78,9 @@
 
 ---
 
-## 📷 Capturas de Pantalla (opcional)
+## 📷 Capturas de Pantalla
 
-> Agrega aquí imágenes clave del login, dashboard, eventos, etc.
+
 
 ![image](https://github.com/user-attachments/assets/e09f12e2-f085-4157-90da-031554e780c7)
 ![image](https://github.com/user-attachments/assets/08be4a0d-a780-49ca-a6fd-a0f66cf6c4b0)
